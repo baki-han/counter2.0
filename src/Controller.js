@@ -1,10 +1,20 @@
-import React from "react";
+import React, {useState} from "react";
 
 function Controller(props) {
+
+    const [value, setValue] = useState("");
+
+    const buttonHandler = () =>{
+        props.addCounter(value);
+        setValue("");
+    }
+
+
     return (
         <div>
-            <input type="text" placeholder="no trabajo"/>
-            <button onClick={props.addCounter}>Add Counter</button>
+            <input onChange={(e)=> setValue(e.target.value)}
+                   type="number" placeholder="enter new counter" value={value}/>
+            <button onClick={buttonHandler}>Add Counter</button>
         </div>
     );
 }

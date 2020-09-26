@@ -3,8 +3,15 @@ import React, { useState } from 'react';
 function ListItem(props){
 
     const [editMode, setEditMode] = useState(false);
+    const [value, setValue] = useState("");
 
     const changeEditMode = () =>{
+        setEditMode(!editMode);
+    }
+
+    const buttonSaveHandler = ()=>{
+        props.saveCounter(props.el.id, value);
+        setValue("");
         setEditMode(!editMode);
     }
 
@@ -20,9 +27,11 @@ function ListItem(props){
         <button disabled={props.i === props.len-1} onClick={() => props.moveCounter(props.index, props.i + 1)}>↓</button>
 
         {editMode && <>
-            <input />
-            <button>save</button>
-            <button>cancel</button>
+            <input type="number"
+                   onChange={(event => setValue(event.target.value))}
+                   value={value}/>
+            <button onClick={buttonSaveHandler}>save</button>
+            <button onClick={()=>setEditMode(!editMode)}>cancel</button>
         </>}
         {!editMode && <button onClick={changeEditMode}>edit</button>}
     </div>);

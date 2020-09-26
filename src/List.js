@@ -2,6 +2,7 @@ import React from 'react';
 import ListItem from './ListItem';
 
 function List(props){
+    const saveCounter = props.saveCounter;
 
     return (<div>
 
@@ -10,6 +11,7 @@ function List(props){
             moveCounter={props.moveCounter}
             i={i} len={props.list.length}
             update={props.counterChange}
+            saveCounter={saveCounter}
         />)}
 
     </div>);
